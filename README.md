@@ -37,3 +37,18 @@
    attempted. They should be contained in an element with id
    `error_explanation`, and each error should have its own `<li>`.
 1. Conditionally wrap each field in a `.field_with_errors` div if it has errors.
+
+
+  def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.valid?
+      @post.save
+      redirect_to post_path(@post)
+    else
+      render :new
+    end
+  end
